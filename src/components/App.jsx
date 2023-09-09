@@ -76,10 +76,6 @@ export class App extends Component {
       return Notify.warning('Search field is empty. Please, enter your request');
     }
 
-    if (newQuery === this.state.query) {
-      return Notify.warning('That is the same request. Please, enter a new one');
-    }
-
     this.setState({ searchQuery: newQuery, page, images: [], status: 'pending' });
 
   }
@@ -101,7 +97,7 @@ export class App extends Component {
     const { images, page, lastPage, status } = this.state;
     return (
       <div className={css.App}>
-        <Searchbar onSubmit={this.handleSubmit} isSubmitting={status === 'pending'} />
+        <Searchbar onSubmit={this.handleSubmit} />
         <main>
           {images.length > 0 && <ImageGallery images={images} />}
           {status === 'pending'
